@@ -97,7 +97,7 @@ push|--push)
     dotfiles_push
     ;;
 *)
-    echo "Usage: $0 <init|update|upgrade>" >&2
+    echo "Usage: $0 <init|update|upgrade|push>" >&2
     ;;
 esac
 
