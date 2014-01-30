@@ -1,0 +1,6 @@
+[submodule "vimsettings"]
+	path = vimsettings
+	url = git@github.com:Villadelfia/vimsettings.git
+[submodule "zshsettings"]
+	path = zshsettings
+	url = git@github.com:Villadelfia/zshsettings.git
