@@ -61,21 +61,6 @@ dotfiles_update() {
     popd > /dev/null
 }
 
-dotfiles_upgrade() {
-    pushd $DIR > /dev/null
-    output=`git submodule foreach --recursive git pull origin master 2>&1 | \
-        grep -v '^From' | grep -v "FETCH_HEAD" | grep -v '^Entering' | \
-        grep -v "up-to-date\.$"`
-    if [ -n "$output" ]; then
-        echo "$output";
-        git submodule foreach --recursive git checkout master 2>&1 > /dev/null
-        popd > /dev/null
-        source_config
-    else
-        echo "Everything up-to-date."
-    fi
-}
-
 dotfiles_push() {
     pushd $DIR > /dev/null
     git commit -a -m 'Submodules update'
@@ -90,14 +75,11 @@ init|--init)
 update|--update)
     dotfiles_update
     ;;
-upgrade|--upgrade)
-    dotfiles_upgrade
-    ;;
 push|--push)
     dotfiles_push
     ;;
 *)
-    echo "Usage: $0 <init|update|upgrade|push>" >&2
+    echo "Usage: $0 <init|update|push>" >&2
     ;;
 esac
 
